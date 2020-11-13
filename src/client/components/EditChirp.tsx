@@ -17,7 +17,7 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
     }, []);
 
     // const handleUserChange = (e) => setUsers(e.target.value);
-    const handleTextChange = (e) => setContent(e.target.value);
+    const handleContentChange = (e) => setContent(e.target.value);
 
     const editChirp = async (id: string) => {
         const chirp = {
@@ -28,9 +28,10 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
         let res = await fetch(`/api/chirps/${id}`, {
             method: "PUT",
             headers: {
+                Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(chirp)
+            body: JSON.stringify({ chirp })
         })
 
         if (res.ok) {
@@ -57,7 +58,7 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
         <div className="card text-center d-flex justify-content-center m-3 shadow-lg border border-info rounded">
             <div className="card-body">
             <h5 className="card-title">@{name}</h5>
-                <textarea className="card-text" defaultValue={content} onChange={(e) => handleTextChange(e)}></textarea>
+                <textarea className="card-text" defaultValue={content} onChange={(e) => handleContentChange(e)}></textarea>
                 <button className="btn btn-info rounded" onClick={() => editChirp(props.match.params.id)}>Save Edit</button>
                 <button className="btn btn-info rounded" onClick={() => deleteChirp(props.match.params.id)}>Delete Chirp</button>
             </div>
