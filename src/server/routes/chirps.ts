@@ -27,8 +27,8 @@ router.put('/:id', async (req, res) => {
   try {
     res.json(
       await db.chirps.editChirp(
-      req.body.name,
       req.body.content,
+      req.body.id
     )
     );
   } catch(err) {

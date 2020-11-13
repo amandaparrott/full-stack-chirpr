@@ -31,11 +31,11 @@ const getChirp = async (id: any) =>
     `, 
     [id]);
     
- const editChirp = async (chirp: string, id: number) => Query(`
+ const editChirp = async (content: string, id: number) => Query(`
      UPDATE chirps
      SET content = ?
      WHERE id =?;
- `, [chirp, id]);
+ `, [content, id]);
 // const deleteChirp = async (id: number, chirp: string) => Query();
 
 export default {

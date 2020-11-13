@@ -20,7 +20,9 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
     const handleContentChange = (e) => setContent(e.target.value);
 
     const editChirp = async (id: string) => {
+        
         const chirp = {
+            id: id,
             name: name,
             content: content
         };
@@ -28,10 +30,10 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
         let res = await fetch(`/api/chirps/${id}`, {
             method: "PUT",
             headers: {
-                Accept: "application/json",
+                "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ chirp })
+            body: JSON.stringify(chirp)
         })
 
         if (res.ok) {
