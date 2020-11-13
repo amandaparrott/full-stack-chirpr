@@ -1,28 +1,28 @@
-import React from 'react';
+import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useHistory, RouteComponentProps } from 'react-router-dom';
+import { useHistory, useParams, RouteComponentProps } from 'react-router-dom';
 
 const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
 
-    const [user, setUser] = useState<string>('');
-    const [text, setText] = useState<string>('');
+    const [users, setUsers] = useState<string>('');
+    const [content, setContent] = useState<string>('');
 
     useEffect(() => {
         (async () => {
             let res = await fetch(`/api/chirps/${props.match.params.id}`);
             let chirp = await res.json();
-            setUser(chirp.user);
-            setText(chirp.text);
+            setUsers(chirp.users);
+            setContent(chirp.content);
         })()
     }, []);
 
-    const handleUserChange = (e) => setUser(e.target.value);
-    const handleTextChange = (e) => setText(e.target.value);
+    const handleUserChange = (e) => setUsers(e.target.value);
+    const handleTextChange = (e) => setContent(e.target.value);
 
     const editChirp = async (id: string) => {
         const chirp = {
-            user: user,
-            text: text
+            users: users,
+            content: content
         };
 
         let res = await fetch(`/api/chirps/${id}`, {
@@ -53,11 +53,20 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
         }
     }
 
+    // useEffect(() => {
+    //     (async () => {
+    //       let res = await fetch(`/api/chirps/${id}`);
+    //       let chirp = await res.json();
+    //       setUsers(chirp.user);
+    //       setContent(chirp.content);
+    //     })();
+    //   }, [id]);
+
     return (
         <div className="card text-center d-flex justify-content-center m-3 shadow-lg border border-info rounded">
             <div className="card-body">
-                <textarea className="card-text" defaultValue={user} onChange={(e) => handleUserChange(e)}></textarea>
-                <textarea className="card-text" defaultValue={text} onChange={(e) => handleTextChange(e)}></textarea>
+                <textarea className="card-text" defaultValue={users} onChange={(e) => handleUserChange(e)}></textarea>
+                <textarea className="card-text" defaultValue={content} onChange={(e) => handleTextChange(e)}></textarea>
                 <button className="btn btn-info rounded" onClick={() => editChirp(props.match.params.id)}>Save Edit</button>
                 <button className="btn btn-info rounded" onClick={() => deleteChirp(props.match.params.id)}>Delete Chirp</button>
             </div>

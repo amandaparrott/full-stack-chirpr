@@ -28,8 +28,8 @@ const ChirpsTimeline: React.FC<IChirpsProps> = props => {
 
 interface IChirp {
     id: string,
-    user: string,
-    text: string
+    name: string,
+    content: string
 }
 
 interface IChirpsProps {}
