@@ -1,4 +1,5 @@
 import { Query } from './index';
+// import type { TChirps, TUsers } from './models'
 
 // interface IChirpsT {
 //     id: number;
@@ -19,7 +20,8 @@ const getChirps = async () => Query(`
     JOIN users ON  users.id = chirps.userid
 `);
 
-const getChirp = async (id: number) => Query(` 
+const getChirp = async (id: any) => 
+    Query(` 
     SELECT 
         chirps.*, 
         users.name 
@@ -29,17 +31,17 @@ const getChirp = async (id: number) => Query(`
     `, 
     [id]);
     
-// const editChirp = async (chirp: string, id: number) => Query(`
-//     UPDATE chirps
-//     SET content = ?
-//     WHERE id =?;
-// `, [chirp, id]);
+ const editChirp = async (chirp: string, id: number) => Query(`
+     UPDATE chirps
+     SET content = ?
+     WHERE id =?;
+ `, [chirp, id]);
 // const deleteChirp = async (id: number, chirp: string) => Query();
 
 export default {
     // writeChirp,
     getChirps,
     getChirp,
-    // editChirp,
+    editChirp,
     // deleteChirp
 }
