@@ -8,7 +8,7 @@ const HomePage: React.FC<IHomePageProps> = () => {
     <div className="container">
       <div>
         <nav className="navbar navbar-dark bg-dark">
-          <Link to={'/api/chirps'}>
+          <Link to={'/'}>
             <button className="btn btn-outline-info" type="button">Chirps</button>
           </Link>
           <Link to={'/addchirp'}>

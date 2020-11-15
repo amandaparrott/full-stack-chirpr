@@ -1,6 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useHistory, RouteComponentProps } from 'react-router-dom';
+// import HomePage from './HomePage';
+import { Link } from 'react-router-dom';
+
 
 const AddChirp: React.FC<IAddChirpProps> = props => {
   const [user, setUser] = useState<string>("");
@@ -40,6 +43,14 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
   }
 
   return (
+    <nav className="navbar navbar-dark bg-dark">
+    <Link to={'/'}>
+      <button className="btn btn-outline-info" type="button">Chirps</button>
+    </Link>
+    <Link to={'/addchirp'}>
+      <button className="btn btn-outline-info" type="button">Add Chirp</button>
+    </Link>
+  </nav>
     <form className="d-flex justify-content-center align-items center">
       <div className="form-group col col-6 shadow-lg border border-info rounded mt-3 text-center">
         <label className="font-weight-bolder">Username</label>
@@ -68,7 +79,7 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
               </button>
       </div>
     </form>
-  )
+  );
 
 }
 interface IAddChirpProps extends RouteComponentProps<{ id: string }> {
