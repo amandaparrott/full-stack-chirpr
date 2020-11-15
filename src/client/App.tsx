@@ -9,18 +9,22 @@ import AddChirp from './components/AddChirp';
 const App: React.FC<IAppProps> = () => {
 
 	return (
-		<div>
-			<Router>
-				<React.Fragment>
-					<Switch>
-						<Route exact path="/" component={HomePage} />
-						<Route path="/chirps" component={Chirps} />
-						<Route path="/:id/admin" component={EditChirp} />
-						<Route path="/addchirp" component={AddChirp} />
-					</Switch>
-				</React.Fragment>
-			</Router>
-		</div>
+		<Router>
+			<nav className="navbar sticky-top navbar-dark bg-dark">
+				<Link to={'/'}>
+					<button className="btn btn-outline-info" type="button">Chirps</button>
+				</Link>
+				<Link to={'/addchirp'}>
+					<button className="btn btn-outline-info" type="button">Add Chirp</button>
+				</Link>
+			</nav>
+			<Switch>
+				<Route exact path="/" component={HomePage} />
+				<Route path="/chirps" component={Chirps} />
+				<Route path="/:id/admin" component={EditChirp} />
+				<Route path="/addchirp" component={AddChirp} />
+			</Switch>
+		</Router>
 	);
 };
 

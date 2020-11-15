@@ -1,55 +1,59 @@
-import * as express from 'express';
-import db from '../db';
+import * as express from "express";
+import db from "../db"
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    try {
-        res.json(await db.chirps.getChirps());
-    } catch(e) {
-        console.log(e);
+router.get("/", async (req, res) => {
+  try {
+    res.json(await db.chirps.getChirps());
+  } catch (e) {
+    console.log(e);
     res.sendStatus(500);
-    }
+  }
 });
 
-router.get('/:id', async (req, res) => {
-    console.log('test');
-    const id = Number(req.params.id)
+router.get("/:id", async (req, res) => {
+  console.log("test");
+  const id = Number(req.params.id);
   try {
-      const [chirp] = await db.chirps.getChirp(id)
-        res.json(chirp);
-    } catch(err) {
-        console.log(err);
-    }
+    const [chirp] = await db.chirps.getChirp(id);
+    res.json(chirp);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
-router.put('/:id', async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
-    res.json(
-      await db.chirps.editChirp(
-      req.body.content,
-      req.body.id
-    )
-    );
-  } catch(err) {
+    res.json(await db.chirps.editChirp(req.body.content, req.body.id));
+  } catch (err) {
     console.log(err);
     res.sendStatus(500);
   }
-})
+});
 
-// router.post('/:id', async (req, res) => {
-//     try {
-//         res.json(await db.chirps.createChirp(req.params.id)[0]);
-//     } catch(e) {
-//         console.log(e);
-//         res.sendStatus(5000);
-//     }
-// });
+router.post("/", async (req, res) => {
+  try {
+    const name = req.body.name;
+    let newUser = await db.users.newUser(name);
+    console.log(newUser);
+    res.json(await db.chirps.writeChirp(newUser.insertId, req.body.content)[0]);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
 
+router.delete("/:id", async (req, res) => {
+  try {
+    res.json(await db.chirps.deleteChirp(parseInt(req.params.id)));
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
 
 export default router;
-
-
 
 // import * as express from "express";
 // import {

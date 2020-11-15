@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 
 
 const AddChirp: React.FC<IAddChirpProps> = props => {
-  const [user, setUser] = useState<string>("");
-  const [text, setText] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [content, setContent] = useState<string>("");
 
-  const handleUserChange = (e) => setUser(e.target.value);
-  const handleTextChange = (e) => setText(e.target.value);
+  // const handleNameChange = (e) => setName(e.target.value);
+  // const handleContentChange = (e) => setContent(e.target.value);
   const handleClick = (e) => {
     e.preventDefault();
     newChirp();
@@ -24,12 +24,13 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
   const newChirp = async () => {
 
     const chirp = {
-      user: user,
-      text: text
+      name: name,
+      content: content
     };
     let res = await fetch("/api/chirps", {
       method: "POST",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(chirp),
@@ -43,14 +44,6 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
   }
 
   return (
-    <nav className="navbar navbar-dark bg-dark">
-    <Link to={'/'}>
-      <button className="btn btn-outline-info" type="button">Chirps</button>
-    </Link>
-    <Link to={'/addchirp'}>
-      <button className="btn btn-outline-info" type="button">Add Chirp</button>
-    </Link>
-  </nav>
     <form className="d-flex justify-content-center align-items center">
       <div className="form-group col col-6 shadow-lg border border-info rounded mt-3 text-center">
         <label className="font-weight-bolder">Username</label>
@@ -58,8 +51,8 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
           type="text"
           className="form-control"
           placeholder="Enter username here"
-          value={user}
-          onChange={(e) => handleUserChange(e)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         ></input>
         <div className="form-group">
           <label className="font-weight-bolder">Chirp</label>
@@ -67,8 +60,8 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
             type="text"
             className="form-control"
             placeholder="Chirp it out!"
-            value={text}
-            onChange={(e) => handleTextChange(e)}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           ></input>
         </div>
         <button
@@ -82,10 +75,10 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
   );
 
 }
-interface IAddChirpProps extends RouteComponentProps<{ id: string }> {
-  id: number;
-  user: string;
-  text: string;
+interface IAddChirpProps extends RouteComponentProps {
+  // id: number;
+  // userid: string;
+  // content: string;
 }
 
 

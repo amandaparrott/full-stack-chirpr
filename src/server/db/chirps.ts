@@ -1,16 +1,10 @@
 import { Query } from './index';
-// import type { TChirps, TUsers } from './models'
 
-// interface IChirpsT {
-//     id: number;
-//     userid: number;
-//     content: string;
-//     location: string;
-//     _create: Date;
-//     name: string;
-// }
 
-// const writeChirp = async (userid: string, chirps: string) => Query('insert into chirps(userid, content) values (?, ?));
+const writeChirp = async (userid: string, content: string) => Query(`
+INSERT INTO chirps(userid, content) 
+VALUES (?, ?)
+`, [userid, content]);
 
 const getChirps = async () => Query(`
     SELECT
@@ -34,14 +28,18 @@ const getChirp = async (id: any) =>
  const editChirp = async (content: string, id: number) => Query(`
      UPDATE chirps
      SET content = ?
-     WHERE id =?;
+     WHERE id = ?;
  `, [content, id]);
-// const deleteChirp = async (id: number, chirp: string) => Query();
+
+const deleteChirp = async (id: number) => Query(`
+    DELETE FROM chirps
+    WHERE id = ?;
+`, [id]);
 
 export default {
-    // writeChirp,
+    writeChirp,
     getChirps,
     getChirp,
     editChirp,
-    // deleteChirp
+    deleteChirp
 }
