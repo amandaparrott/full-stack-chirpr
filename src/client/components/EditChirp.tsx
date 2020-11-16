@@ -57,13 +57,15 @@ const EditChirps: React.FC<IEditProps> = (props: IEditProps) => {
     };
 
     return (
-        <div className="card text-center d-flex justify-content-center m-3 shadow-lg border border-info rounded">
-            <div className="card-body">
+        <div className="editcard container">
+        <div className="card row text-center d-flex justify-content-center bg-warning m-3 shadow-lg border border-info rounded">
+            <div className="card-body text-center">
             <h5 className="card-title">@{name}</h5>
-                <textarea className="card-text" defaultValue={content} onChange={(e) => handleContentChange(e)}></textarea>
-                <button className="btn btn-info rounded" onClick={() => editChirp(props.match.params.id)}>Save Edit</button>
-                <button className="btn btn-info rounded" onClick={() => deleteChirp(props.match.params.id)}>Delete Chirp</button>
+                <textarea className="card-text col" defaultValue={content} onChange={(e) => handleContentChange(e)}></textarea>
+                <button className="btn btn-secondary rounded mx-4" onClick={() => editChirp(props.match.params.id)}>Save Edit</button>
+                <button className="btn btn-secondary rounded mx-4" onClick={() => deleteChirp(props.match.params.id)}>Delete Chirp</button>
             </div>
+        </div>
         </div>
     )
 }

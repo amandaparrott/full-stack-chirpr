@@ -10,12 +10,12 @@ const App: React.FC<IAppProps> = () => {
 
 	return (
 		<Router>
-			<nav className="navbar sticky-top navbar-dark bg-dark">
+			<nav className="navbar sticky-top navbar-dark bg-warning">
 				<Link to={'/'}>
-					<button className="btn btn-outline-info" type="button">Chirps</button>
+					<button className="btn btn-outline-secondary" type="button">Chirps</button>
 				</Link>
 				<Link to={'/addchirp'}>
-					<button className="btn btn-outline-info" type="button">Add Chirp</button>
+					<button className="btn btn-outline-secondary" type="button">Add Chirp</button>
 				</Link>
 			</nav>
 			<Switch>
