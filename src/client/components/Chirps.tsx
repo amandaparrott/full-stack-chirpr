@@ -10,6 +10,7 @@ const ChirpsTimeline: React.FC<IChirpsProps> = props => {
             let res = await fetch('/api/chirps');
             if (res.ok) {
                 let chirps = await res.json();
+                chirps = chirps.reverse();
                 setChirps(chirps);
             }
         };

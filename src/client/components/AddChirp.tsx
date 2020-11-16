@@ -14,7 +14,7 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
   const handleClick = (e) => {
     e.preventDefault();
     newChirp();
-    history.push('/');
+    
   }
 
 
@@ -37,7 +37,7 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
     })
     if (res.ok) {
       console.log('chirp posted');
-
+      history.push('/');
     } else {
       console.log('chirp not posted');
     }

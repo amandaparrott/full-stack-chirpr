@@ -22,6 +22,7 @@ const getChirp = async (id: any) =>
     FROM chirps 
     JOIN users ON users.id = chirps.userid 
     WHERE chirps.id = ?
+    ORDER BY chirps.id DESC
     `, 
     [id]);
     
