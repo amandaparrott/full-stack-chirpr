@@ -45,7 +45,7 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
 
   return (
     <form className="d-flex justify-content-center align-items center">
-      <div className="form-group col col-6 shadow-lg border border-info rounded mt-3 text-center">
+      <div className="bg-warning newchirp form-group col col-6 shadow-lg border border-info rounded mt-3 text-center">
         <label className="font-weight-bolder">Username</label>
         <input
           type="text"
@@ -65,7 +65,7 @@ const AddChirp: React.FC<IAddChirpProps> = props => {
           ></input>
         </div>
         <button
-          className="btn btn-info btn-block w-50 mx-auto shadow-sm mb-2"
+          className="btn btn-secondary btn-block w-50 mx-auto shadow-sm mb-2"
           onClick={e => handleClick(e)}
         >
           Chirp Chirp Bro!
